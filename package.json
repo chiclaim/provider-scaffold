@@ -19,7 +19,7 @@
       },
       {
         "command": "provider-scaffold.NewProvider",
-        "title": "Hello World"
+        "title": "NewProvider"
       }
     ],
     "menus": {
