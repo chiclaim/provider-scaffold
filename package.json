@@ -9,7 +9,9 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:dart"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -19,7 +21,11 @@
       },
       {
         "command": "provider-scaffold.NewProvider",
-        "title": "NewProvider"
+        "title": "New Provider Page And Model"
+      },
+      {
+        "command": "provider-scaffold.wrapWithConsumer",
+        "title": "Wrap with Consumer"
       }
     ],
     "menus": {
@@ -27,6 +33,13 @@
         {
           "command": "provider-scaffold.NewProvider",
           "group": "group1"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "provider-scaffold.wrapWithConsumer",
+          "when": "editorLangId == dart",
+          "group": "navigation"
         }
       ]
     }
