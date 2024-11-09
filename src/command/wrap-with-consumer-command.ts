@@ -10,15 +10,20 @@ export async function wrapWithConsumerCommand(document: vscode.TextDocument, ran
     console.log(`wrapWithConsumerCommand start--->${range.start.line}:${range.start.character}`);
     console.log(`wrapWithConsumerCommand end--->${range.end.line}:${range.end.character}`);
 
+    // 判断光标没有选中代码
+    if (range.isEmpty) {
+        console.log("光标没有选中代码");
+    }
+
     // 选定范围内的代码
     const selectedText = document.getText(range);
 
     // 包裹选中代码
-    const wrappedText = `Consumer(\n  builder: (context, watch, child) {\n    return ${selectedText};\n  },\n)`;
+    const wrappedTextTemplate = `Consumer(\n  builder: (_, model, _) {\n    return ${selectedText};\n  },\n)`;
 
     // 编辑文档，替换选定文本为包裹后的文本
     await editor.edit(editBuilder => {
-        editBuilder.replace(range, wrappedText);
+        editBuilder.replace(range, wrappedTextTemplate);
     });
 
     // 使用 formatDocument 格式化整个文件
