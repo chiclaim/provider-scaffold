@@ -15,6 +15,8 @@ export class WrapWithConsumerProvider implements vscode.CodeActionProvider {
     context: vscode.CodeActionContext,
     token: vscode.CancellationToken
   ): vscode.ProviderResult<vscode.CodeAction[]> {
+    // 第三方库，不展示 Wrap with Consumer 选项
+    if (!vscode.workspace.getWorkspaceFolder(document.uri)) return [];
     const wrapWithConsumerAction = this.createWrapWithConsumerAction(document, range);
     return [wrapWithConsumerAction];
   }
