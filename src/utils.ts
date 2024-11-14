@@ -102,18 +102,11 @@ export class Utils {
 
             if (Utils.isLineEnd(document, currentPosition)) {
                 // 如果当前行已结束，移动到下一行的开始
-                currentPosition = currentPosition.translate(1, -currentPosition.character); // TODO
+                console.log("当前行已结束，移动到下一行的开始 ", currentPosition.line + 1, " count line ", document.lineCount);
+                currentPosition = currentPosition.with(currentPosition.line + 1, 0);
             } else {
                 currentPosition = currentPosition.translate(0, 1);  // 移动到下一字符
             }
-
-            // 移动到下一字符
-            // if (currentPosition.character < lineText.length - 1) {
-            //     currentPosition = currentPosition.translate(0, 1);  // 向右移动
-            // } else {
-            //     // 如果当前行已结束，移动到下一行的开始
-            //     currentPosition = currentPosition.translate(1, -currentPosition.character);
-            // }
         }
         return undefined;  // 如果没有找到匹配的右括号
 
